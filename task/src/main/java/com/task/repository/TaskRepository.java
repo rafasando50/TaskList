@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
+import com.task.dto.DeleteTaskDTO;
 import com.task.model.Task;
 
 @Repository
@@ -60,6 +61,14 @@ public class TaskRepository {
         if(data.getEstado() != null) {
             task.setEstado(data.getEstado());
         }
+    }
+
+    public void delete(DeleteTaskDTO data) {
+        Optional<Task> taskToDelete = getById(data.getId());
+
+        if(taskToDelete.isPresent()) {
+            tasks.remove(taskToDelete.get());
+        }   
     }
 
 

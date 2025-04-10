@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.task.dto.CreateTaskDTO;
+import com.task.dto.DeleteTaskDTO;
 import com.task.dto.TaskDTO;
 import com.task.dto.UpdateTaskDTO;
 import com.task.service.TaskService;
@@ -15,7 +16,7 @@ import com.task.service.TaskService;
 import jakarta.validation.Valid;
 
 @RestController
-public class ProductController {
+public class ProductController  {
     
     @Autowired
     private TaskService taskService;
@@ -33,5 +34,10 @@ public class ProductController {
     @RequestMapping("/actualizarTarea")
     public TaskDTO update(@Valid @RequestBody UpdateTaskDTO data) {
         return taskService.update(data);
+    }
+
+    @RequestMapping("/eliminarTarea")
+    public void delete(@Valid @RequestBody DeleteTaskDTO data) {
+        taskService.delete(data);
     }
 }

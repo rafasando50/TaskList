@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.task.dto.CreateTaskDTO;
+import com.task.dto.DeleteTaskDTO;
 import com.task.dto.TaskDTO;
 import com.task.dto.UpdateTaskDTO;
 import com.task.model.Task;
@@ -63,6 +64,9 @@ public class TaskService {
 
         return toDTO(taskRepository.save(existing));
     }
-
     
+    public void delete(DeleteTaskDTO data) {
+        taskRepository.delete(data);
+    }
 }
+
