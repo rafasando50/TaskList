@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.task.dto.CreateTaskDTO;
 import com.task.dto.TaskDTO;
+import com.task.dto.UpdateTaskDTO;
 import com.task.model.Task;
 import com.task.repository.TaskRepository;
 
@@ -43,6 +44,24 @@ public class TaskService {
 
     private TaskDTO toDTO(Task model) {
         return new TaskDTO(model.getId(), model.getTitle(), model.getDescription(), model.getEstado());
+    }
+
+    public TaskDTO update(UpdateTaskDTO data) {
+        Task existing = taskRepository.getById(data.getId()).orElseThrow(() -> new RuntimeException("Task not found"));
+
+        if(data.getTitle() != null) {
+            existing.setTitle(data.getTitle());
+        }
+
+        if(data.getDescription() != null) {
+            existing.setDescription(data.getDescription());
+        }
+
+        if(data.getEstado() != null) {
+            existing.setEstado(data.getEstado());
+        }
+
+        return toDTO(taskRepository.save(existing));
     }
 
     

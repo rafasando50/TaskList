@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.task.dto.CreateTaskDTO;
 import com.task.dto.TaskDTO;
+import com.task.dto.UpdateTaskDTO;
 import com.task.service.TaskService;
 
 import jakarta.validation.Valid;
@@ -19,13 +20,18 @@ public class ProductController {
     @Autowired
     private TaskService taskService;
 
-    @RequestMapping("/obtenerProductos")
+    @RequestMapping("/listarTareas")
     public List<TaskDTO> getAll() {
         return taskService.getAll();
     }
 
-    @RequestMapping("/crearProducto")
+    @RequestMapping("/crearTarea")
     public TaskDTO save(@Valid @RequestBody CreateTaskDTO data) {
         return taskService.save(data);
+    }
+
+    @RequestMapping("/actualizarTarea")
+    public TaskDTO update(@Valid @RequestBody UpdateTaskDTO data) {
+        return taskService.update(data);
     }
 }
