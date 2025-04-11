@@ -15,7 +15,7 @@ public class TaskRepository {
     private List<Task> tasks;
     
     public TaskRepository() {
-        currentID = 1;
+        currentID = 0;
         tasks = new LinkedList<>();
     }
 
